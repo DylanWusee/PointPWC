@@ -51,7 +51,6 @@ def square_distance(src, dst):
     dist += torch.sum(dst ** 2, -1).view(B, 1, M)
     return dist
 
-
 def knn_point(nsample, xyz, new_xyz):
     """
     Input:

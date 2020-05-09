@@ -221,7 +221,7 @@ if __name__ == "__main__":
             flows, fps_pc1_idxs, fps_pc2_idxs, pc1, pc2 = model(xyz1, xyz2, color1, color2)
             torch.cuda.synchronize()
 
-    loss = multiScaleLossepe3dv2(flows, gt_flow, fps_pc1_idxs)
+    loss = multiScaleLoss(flows, gt_flow, fps_pc1_idxs)
 
     print(flows[0].shape, loss)
     print(loss)
