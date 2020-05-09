@@ -1,3 +1,9 @@
+"""
+Evaluation
+Author: Wenxuan Wu
+Date: May 2020
+"""
+
 import argparse
 import sys 
 import os 
@@ -86,7 +92,7 @@ def main():
     model.load_state_dict(torch.load(pretrain))
     print('load model %s'%pretrain)
     logger.info('load model %s'%pretrain)
-    
+
     model.cuda()
 
     epe3ds = AverageMeter()

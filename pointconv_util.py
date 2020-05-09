@@ -1,3 +1,9 @@
+"""
+PointConv util functions
+Author: Wenxuan Wu
+Date: May 2020
+"""
+
 import torch 
 import torch.nn as nn 
 

@@ -1,3 +1,9 @@
+"""
+Train on FlyingThings3D
+Author: Wenxuan Wu
+Date: May 2020
+"""
+
 import argparse
 import sys 
 import os 
