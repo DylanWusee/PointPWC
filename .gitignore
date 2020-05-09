@@ -1,0 +1,9 @@
+__pycache__
+experiment
+flyingthings3d
+pointnet2/__pycache__
+pointnet2/build
+pointnet2/dist
+pointnet2/pointnet2.egg-info
+Evaluate_experiment
+ft_experiment

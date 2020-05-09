@@ -1,0 +1,40 @@
+gpu: "0"
+multi_gpu: null
+
+model_name: PointConv
+
+full: False
+
+evaluate: True
+resume: True
+ckpt_dir: ./ft_experiment/PCPointConvFlyingthings3d-2019-11-12_10-04/checkpoints/
+
+arch: PointConv
+last_relu: False
+allow_less_points: False
+
+# general args
+batch_size: 1
+pretrain: PointConv_235_0.0547.pth
+dim: 3
+num_points: 8192
+
+DEVICE: cuda
+
+dataset: FlyingThings3DSubset # FlyingThings3DSubset KITTI
+data_root: ./flyingthings3d
+
+data_process:
+  DEPTH_THRESHOLD: 35.
+  NO_CORR: True
+
+# miscalleneous
+workers: 16
+
+
+
+
+
+
+
+
