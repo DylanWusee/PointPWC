@@ -44,9 +44,7 @@ python3 data_preprocess/process_kitti.py RAW_DATA_PATH SAVE_PATH/KITTI_processed
 
 Here are some demo results:
 
-<img src="./images/FlyingThings3D.gif" width=50%>
-
-<img src="./images/Kitti.gif" width=50%>
+<img src="./images/FlyingThings3D.gif" width=50%> <img src="./images/Kitti.gif" width=50%>
 
 ### Train
 Set `data_root` in the configuration file to `SAVE_PATH` in the data preprocess section. Then run
