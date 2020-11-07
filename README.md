@@ -1,6 +1,11 @@
 # PointPWC
 This is the code for [PointPWC-Net](https://arxiv.org/abs/1911.12408), a deep coarse-to-fine network designed for 3D scene flow estimation from 3D point clouds.
 
+**Update:**
+Self-supervised loss is release in model.py(multiScaleChamferSmoothCurvature).
+You can train the self-supervised model by using train_self.py.
+
+
 ## Prerequisities
 Our model is trained and tested under:
 * Python 3.6.9
