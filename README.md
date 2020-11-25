@@ -12,7 +12,7 @@ You can train the self-supervised model by using train_self.py.
 
 ## Citation
 
-If you use this code for your research, please cite our paper.
+If you find our work useful in your research, please consider citing:
 
 ```
 @inproceedings{wu2020pointpwc,
