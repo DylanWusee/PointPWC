@@ -1,5 +1,5 @@
-# PointPWC
-This is the code for [PointPWC-Net](https://arxiv.org/abs/1911.12408), a deep coarse-to-fine network designed for 3D scene flow estimation from 3D point clouds.
+# PointPWC-Net: *Cost Volume on Point Clouds for (Self-) Supervised Scene Flow Estimation*
+This is the code for [PointPWC-Net](https://arxiv.org/abs/1911.12408), a deep coarse-to-fine network designed for 3D scene flow estimation from 3D point clouds. Created by <a href="http://web.engr.oregonstate.edu/~wuwen/" target="_blank">Wenxuan Wu</a>, <a href="http://web.engr.oregonstate.edu/~lif/" target="_blank">Fuxin Li</a> from Oregon State University.
 
 **Update:**
 
@@ -8,6 +8,31 @@ You can train the self-supervised model by using train_self.py.
 * Update PointConvFlow to compute the patch-to-patch cost volume.
 * Update a updated model pretrain weight to get a better result.
 
+<img src="./images/PointPWC.png" width=100%>
+
+## Citation
+
+If you use this code for your research, please cite our paper.
+
+```
+@inproceedings{wu2020pointpwc,
+  title={PointPWC-Net: Cost Volume on Point Clouds for (Self-) Supervised Scene Flow Estimation},
+  author={Wu, Wenxuan and Wang, Zhi Yuan and Li, Zhuwen and Liu, Wei and Fuxin, Li},
+  booktitle={European Conference on Computer Vision},
+  pages={88--107},
+  year={2020},
+  organization={Springer}
+}
+```
+
+```
+@article{wu2019pointpwc,
+  title={PointPWC-Net: A Coarse-to-Fine Network for Supervised and Self-Supervised Scene Flow Estimation on 3D Point Clouds},
+  author={Wu, Wenxuan and Wang, Zhiyuan and Li, Zhuwen and Liu, Wei and Fuxin, Li},
+  journal={arXiv preprint arXiv:1911.12408},
+  year={2019}
+}
+```
 
 ## Prerequisities
 Our model is trained and tested under:
@@ -75,30 +100,6 @@ python3 evaluate.py config_evaluate.yaml
 ```
 
 We upload one pretrained model in ```pretrain_weights```.
-
-## Citation
-
-If you use this code for your research, please cite our paper.
-
-```
-@inproceedings{wu2020pointpwc,
-  title={PointPWC-Net: Cost Volume on Point Clouds for (Self-) Supervised Scene Flow Estimation},
-  author={Wu, Wenxuan and Wang, Zhi Yuan and Li, Zhuwen and Liu, Wei and Fuxin, Li},
-  booktitle={European Conference on Computer Vision},
-  pages={88--107},
-  year={2020},
-  organization={Springer}
-}
-```
-
-```
-@article{wu2019pointpwc,
-  title={PointPWC-Net: A Coarse-to-Fine Network for Supervised and Self-Supervised Scene Flow Estimation on 3D Point Clouds},
-  author={Wu, Wenxuan and Wang, Zhiyuan and Li, Zhuwen and Liu, Wei and Fuxin, Li},
-  journal={arXiv preprint arXiv:1911.12408},
-  year={2019}
-}
-```
 
 
 ## Acknowledgement
