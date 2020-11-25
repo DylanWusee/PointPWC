@@ -6,7 +6,7 @@ This is the code for [PointPWC-Net](https://arxiv.org/abs/1911.12408), a deep co
 * Self-supervised loss is release in model.py(multiScaleChamferSmoothCurvature).
 You can train the self-supervised model by using train_self.py.
 * Update PointConvFlow to compute the patch-to-patch cost volume.
-* Update a updated model pretrain weight to get a better result.
+* Update a updated model pretrain weight to obtain a better result than the original paper.
 
 <img src="./images/PointPWC.png" width=100%>
 
