@@ -2,8 +2,11 @@
 This is the code for [PointPWC-Net](https://arxiv.org/abs/1911.12408), a deep coarse-to-fine network designed for 3D scene flow estimation from 3D point clouds.
 
 **Update:**
-Self-supervised loss is release in model.py(multiScaleChamferSmoothCurvature).
+
+* Self-supervised loss is release in model.py(multiScaleChamferSmoothCurvature).
 You can train the self-supervised model by using train_self.py.
+* Update PointConvFlow to compute the patch-to-patch cost volume.
+* Update a updated model pretrain weight to get a better result.
 
 
 ## Prerequisities
@@ -58,6 +61,12 @@ Set `data_root` in the configuration file to `SAVE_PATH` in the data preprocess 
 ```bash
 python3 train.py config_train.yaml
 ```
+After training the model with a quater dataset, one can achieve a better results as the paper by finetuning the model with the full dataset using the following command. Before running the finetuning the model, one need to set the `pretrain` to the pretrained weights. An example path is shown in the `config_train_finetune.yaml`.
+```bash
+python3 train.py config_train_finetune.yaml
+```
+
+One can train the model using the similar commend as before for self-supervised model by replacing the `train.py` to `train_self.py`.
 
 ### Evaluate
 Set `data_root` in the configuration file to `SAVE_PATH` in the data preprocess section. Then run
@@ -72,6 +81,17 @@ We upload one pretrained model in ```pretrain_weights```.
 If you use this code for your research, please cite our paper.
 
 ```
+@inproceedings{wu2020pointpwc,
+  title={PointPWC-Net: Cost Volume on Point Clouds for (Self-) Supervised Scene Flow Estimation},
+  author={Wu, Wenxuan and Wang, Zhi Yuan and Li, Zhuwen and Liu, Wei and Fuxin, Li},
+  booktitle={European Conference on Computer Vision},
+  pages={88--107},
+  year={2020},
+  organization={Springer}
+}
+```
+
+```
 @article{wu2019pointpwc,
   title={PointPWC-Net: A Coarse-to-Fine Network for Supervised and Self-Supervised Scene Flow Estimation on 3D Point Clouds},
   author={Wu, Wenxuan and Wang, Zhiyuan and Li, Zhuwen and Liu, Wei and Fuxin, Li},
@@ -79,6 +99,7 @@ If you use this code for your research, please cite our paper.
   year={2019}
 }
 ```
+
 
 ## Acknowledgement
 
