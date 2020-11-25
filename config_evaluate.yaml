@@ -15,7 +15,7 @@ allow_less_points: False
 
 # general args
 batch_size: 1
-pretrain: PointPWC_Net.pth
+pretrain: PointConv_514_0.0565.pth 
 dim: 3
 num_points: 8192
 

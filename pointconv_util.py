@@ -283,6 +283,9 @@ class PointConvFlow(nn.Module):
                 self.mlp_bns.append(nn.BatchNorm2d(out_channel))
             last_channel = out_channel
 
+        self.weightnet1 = WeightNet(3, last_channel)
+        self.weightnet2 = WeightNet(3, last_channel)
+
         self.relu = nn.ReLU(inplace=True) if not use_leaky else nn.LeakyReLU(LEAKY_RATE, inplace=True)
 
 
@@ -297,6 +300,7 @@ class PointConvFlow(nn.Module):
         Return:
             new_points: upsample points feature data, [B, D', N1]
         """
+        # import ipdb; ipdb.set_trace()
         B, C, N1 = xyz1.shape
         _, _, N2 = xyz2.shape
         _, D1, _ = points1.shape
@@ -306,6 +310,7 @@ class PointConvFlow(nn.Module):
         points1 = points1.permute(0, 2, 1)
         points2 = points2.permute(0, 2, 1)
 
+        # point-to-patch Volume
         knn_idx = knn_point(self.nsample, xyz2, xyz1) # B, N1, nsample
         neighbor_xyz = index_points_group(xyz2, knn_idx)
         direction_xyz = neighbor_xyz - xyz1.view(B, N1, 1, C)
@@ -322,12 +327,21 @@ class PointConvFlow(nn.Module):
                 new_points =  self.relu(conv(new_points))
 
         # weighted sum
-        dist = torch.norm(direction_xyz, dim = 3).clamp(min = 1e-10) # B N1 nsample
-        norm = torch.sum(1.0/dist, dim = 2, keepdim = True) # B N1 1
-        weights = (1.0/dist) / norm # B N1 nsample
+        weights = self.weightnet1(direction_xyz.permute(0, 3, 2, 1)) # B C nsample N1 
 
-        costVolume = torch.sum(weights.unsqueeze(-1).permute(0, 3, 2, 1) * new_points, dim = 2) # B C N
-        return costVolume
+        point_to_patch_cost = torch.sum(weights * new_points, dim = 2) # B C N
+
+        # Patch to Patch Cost
+        knn_idx = knn_point(self.nsample, xyz1, xyz1) # B, N1, nsample
+        neighbor_xyz = index_points_group(xyz1, knn_idx)
+        direction_xyz = neighbor_xyz - xyz1.view(B, N1, 1, C)
+
+        # weights for group cost
+        weights = self.weightnet2(direction_xyz.permute(0, 3, 2, 1)) # B C nsample N1 
+        grouped_point_to_patch_cost = index_points_group(point_to_patch_cost.permute(0, 2, 1), knn_idx) # B, N1, nsample, C
+        patch_to_patch_cost = torch.sum(weights * grouped_point_to_patch_cost.permute(0, 3, 2, 1), dim = 2) # B C N
+
+        return patch_to_patch_cost
 
 class PointWarping(nn.Module):
 
